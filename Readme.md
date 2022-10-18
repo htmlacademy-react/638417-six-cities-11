@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Павло Пригарницький](https://up.htmlacademy.ru/react/11/user/638417).
-* Наставник: `Неизвестно`.
+* Наставник: [Andrey Povstyanko](https://htmlacademy.ru/profile/id1754753).
 
 ---
 
