@@ -1,5 +1,13 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import MainPage from '../../pages/mainPage/main-page';
+
+type AppScreenProps = {
+  favoritesCount: number;
+}
+
+function App({favoritesCount}: AppScreenProps): JSX.Element {
+  return (
+    <MainPage favoritesCount={favoritesCount} />
+  );
 }
 
 export default App;
