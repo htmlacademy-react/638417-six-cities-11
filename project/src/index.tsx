@@ -6,8 +6,14 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
+const Setting = {
+  favoritesCount: 5,
+} as const;
+
 root.render(
   <React.StrictMode>
-    <App />
+    <App
+      favoritesCount={Setting.favoritesCount}
+    />
   </React.StrictMode>,
 );
