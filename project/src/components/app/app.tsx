@@ -1,4 +1,4 @@
-import MainPage from '../../pages/mainPage/main-page';
+import MainPage from '../../pages/main-page/main-page';
 
 type AppScreenProps = {
   favoritesCount: number;
