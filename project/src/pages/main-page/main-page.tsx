@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Card from '../../components/card/card';
 import Header from '../../components/header/header';
 import {cardsSrc} from '../../mocks/cadr-mock';
@@ -9,6 +10,9 @@ type MainPageProps = {
 function MainPage({ favoritesCount }: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>6 городов. Главная</title>
+      </Helmet>
       <Header favoritesCount={favoritesCount}/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

@@ -1,3 +1,4 @@
+import { HelmetProvider } from 'react-helmet-async';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../consts';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
@@ -13,37 +14,39 @@ type AppScreenProps = {
 
 function App({favoritesCount}: AppScreenProps): JSX.Element {
   return (
+    <HelmetProvider>
 
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainPage favoritesCount={favoritesCount} />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginPage />}
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
-            >
-              <FavoritesPage favoritesCount={favoritesCount}/>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Room}
-          element={<PropertyPage favoritesCount={favoritesCount}/>}
-        />
-        <Route
-          path="*"
-          element={<NotFoundScreen favoritesCount={favoritesCount}/>}
-        />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<MainPage favoritesCount={favoritesCount} />}
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<LoginPage />}
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.NoAuth}
+              >
+                <FavoritesPage favoritesCount={favoritesCount}/>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Room}
+            element={<PropertyPage favoritesCount={favoritesCount}/>}
+          />
+          <Route
+            path="*"
+            element={<NotFoundScreen favoritesCount={favoritesCount}/>}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
