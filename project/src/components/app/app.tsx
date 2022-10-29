@@ -15,7 +15,6 @@ type AppScreenProps = {
 function App({favoritesCount}: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
-
       <BrowserRouter>
         <Routes>
           <Route

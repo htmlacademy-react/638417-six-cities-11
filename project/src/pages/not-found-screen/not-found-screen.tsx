@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
 type NotFoundScreenProp = {
@@ -14,7 +13,6 @@ function NotFoundScreen({ favoritesCount }: NotFoundScreenProp): JSX.Element {
       </Helmet>
       <Header favoritesCount={favoritesCount} />
       <h1 className="favorites__title">404 Page not found</h1>
-      <Footer />
     </div>
   );
 }
