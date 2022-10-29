@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
@@ -8,6 +9,9 @@ type FavoritesPageProps = {
 function FavoritesPage({ favoritesCount }: FavoritesPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>6 городов. Избранное</title>
+      </Helmet>
       <Header favoritesCount={favoritesCount} />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
