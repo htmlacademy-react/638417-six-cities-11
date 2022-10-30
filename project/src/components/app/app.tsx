@@ -6,20 +6,22 @@ import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PropertyPage from '../../pages/property-page/property-page';
+import { Offers } from '../../types/offer';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
   favoritesCount: number;
+  offers: Offers;
 }
 
-function App({favoritesCount}: AppScreenProps): JSX.Element {
+function App({favoritesCount, offers}: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage favoritesCount={favoritesCount} />}
+            element={<MainPage favoritesCount={favoritesCount} offers={offers}/>}
           />
           <Route
             path={AppRoute.Login}
