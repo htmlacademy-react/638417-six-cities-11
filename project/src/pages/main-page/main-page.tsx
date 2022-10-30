@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import Card from '../../components/card/card';
+import CardList from '../../components/card-list/card-list';
+import Card from '../../components/card-list/card/card';
 import Header from '../../components/header/header';
 import { Offers } from '../../types/offer';
 
@@ -74,8 +75,7 @@ function MainPage({ favoritesCount, offers }: MainPageProps, ): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-
-                {offers.map((o)=><Card key={o.id} src={o.previewImage} />)}
+                <CardList offers={offers} />
               </div>
             </section>
             <div className="cities__right-section">
