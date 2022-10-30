@@ -1,5 +1,5 @@
 import { HelmetProvider } from 'react-helmet-async';
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../consts';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -14,14 +14,14 @@ type AppScreenProps = {
   offers: Offers;
 }
 
-function App({favoritesCount, offers}: AppScreenProps): JSX.Element {
+function App({ favoritesCount, offers }: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage favoritesCount={favoritesCount} offers={offers}/>}
+            element={<MainPage favoritesCount={favoritesCount} offers={offers} />}
           />
           <Route
             path={AppRoute.Login}
@@ -33,17 +33,17 @@ function App({favoritesCount, offers}: AppScreenProps): JSX.Element {
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage offers={offers}/>
+                <FavoritesPage offers={offers} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Room}
-            element={<PropertyPage favoritesCount={favoritesCount}/>}
+            element={<PropertyPage favoritesCount={favoritesCount} offers={offers} />}
           />
           <Route
             path="*"
-            element={<NotFoundScreen favoritesCount={favoritesCount}/>}
+            element={<NotFoundScreen favoritesCount={favoritesCount} />}
           />
         </Routes>
       </BrowserRouter>
