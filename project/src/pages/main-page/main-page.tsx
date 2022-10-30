@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import CardList from '../../components/card-list/card-list';
-import Card from '../../components/card-list/card/card';
 import Header from '../../components/header/header';
 import { Offers } from '../../types/offer';
 
