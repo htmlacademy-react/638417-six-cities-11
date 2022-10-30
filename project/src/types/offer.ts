@@ -42,3 +42,9 @@ export type Offer = {
 
 export type Offers = Offer[];
 
+export type FavoriteOffer = {
+  name: string;
+  offers: Offers;
+}
+
+export type FavoriteOffers = FavoriteOffer[];
