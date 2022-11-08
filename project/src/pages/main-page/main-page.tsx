@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import CardList from '../../components/card-list/card-list';
 import Header from '../../components/header/header';
 import { Offers } from '../../types/offer';
@@ -9,6 +10,8 @@ type MainPageProps = {
 }
 
 function MainPage({ favoritesCount, offers }: MainPageProps, ): JSX.Element {
+  const cities = [...new Set(offers.map((o) => o.city.name))];
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -20,36 +23,13 @@ function MainPage({ favoritesCount, offers }: MainPageProps, ): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
+              {cities.map((c)=>(
+                <li key={c} className="locations__item">
+                  <Link className="locations__item-link tabs__item" to="#">
+                    <span>{c}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </section>
         </div>
