@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { Offer, Offers } from '../../types/offer';
-import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
 import Gallery from './gallery/gallery';
 import Info from './info/info';
