@@ -1,9 +1,11 @@
+export type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
 export type City = {
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
+  location: Location;
   name: string;
 }
 
@@ -12,12 +14,6 @@ export type Host = {
   id: number;
   isPro: boolean;
   name: string;
-}
-
-export type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
 }
 
 export type Offer = {
@@ -40,11 +36,11 @@ export type Offer = {
   type: string;
 };
 
-export type Offers = Offer[];
-
 export type FavoriteOffer = {
   name: string;
   offers: Offers;
 }
 
+export type Offers = Offer[];
 export type FavoriteOffers = FavoriteOffer[];
+export type Locations = City[];

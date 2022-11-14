@@ -1,19 +1,16 @@
-import { useState } from 'react';
-import { ZERO_ID } from '../../consts';
 import { Offers } from '../../types/offer';
 import Card from './card/card';
 
-
 type CardListProps = {
   offers: Offers;
+  onOfferListItemHover: (offerId: number) => void;
 }
 
-function CardList({ offers }: CardListProps): JSX.Element {
-  const [ativeId, setActiveId] = useState(ZERO_ID);
+function CardList({ offers, onOfferListItemHover }: CardListProps): JSX.Element {
   return (
-    <div className="cities__places-list places__list tabs__content" id={String(ativeId)}>
+    <div className="cities__places-list places__list tabs__content">
       {
-        offers.map((offer) => <Card key={offer.id} offer={offer} onMouseOverHandler={() => setActiveId(offer.id)} />)
+        offers.map((offer) => <Card key={offer.id} offer={offer} onMouseOverHandler={() => onOfferListItemHover(offer.id)} />)
       }
     </div>
   );

@@ -29,7 +29,7 @@ function CardFulInfo({ offers }: CardFulInfoProps): JSX.Element {
         <Gallery images={offer.images} type={offer.type} />
         <Info offer={offer} />
       </section>
-      <Map />
+      <section className="property__map map" />
       <NearPlaces offers={nearPlaces} />
     </>
   );
