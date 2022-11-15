@@ -70,7 +70,9 @@ function MainPage({ favoritesCount, offers }: MainPageProps,): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <Map city={offers[0].city} offers={offers} selectedPoint={selectedPoint}/>
+              <section className="cities__map map">
+                <Map city={offers[0].city} offers={offers} selectedPoint={selectedPoint}/>
+              </section>
             </div>
           </div>
         </div>

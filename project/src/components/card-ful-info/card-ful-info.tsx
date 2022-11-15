@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Offer, Offers } from '../../types/offer';
 import { Reviews } from '../../types/review';
+import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
 import Gallery from './gallery/gallery';
 import Info from './info/info';
@@ -30,7 +31,9 @@ function CardFulInfo({ offers, reviews }: CardFulInfoProps): JSX.Element {
         <Gallery images={offer.images} type={offer.type} />
         <Info offer={offer} reviews={reviews}/>
       </section>
-      <section className="property__map map" />
+      <section className="property__map map">
+        <Map city={offers[0].city} offers={nearPlaces} selectedPoint={undefined}/>
+      </section>
       <NearPlaces offers={nearPlaces} />
     </>
   );
