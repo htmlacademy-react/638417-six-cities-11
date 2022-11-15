@@ -1,18 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { Offer, Offers } from '../../types/offer';
+import { Reviews } from '../../types/review';
 import NearPlaces from '../near-places/near-places';
 import Gallery from './gallery/gallery';
 import Info from './info/info';
 
 type CardFulInfoProps = {
   offers: Offers;
+  reviews: Reviews;
 }
 
 type OfferItemParams = {
   id: string;
 }
 
-function CardFulInfo({ offers }: CardFulInfoProps): JSX.Element {
+function CardFulInfo({ offers, reviews }: CardFulInfoProps): JSX.Element {
 
   const params = useParams<keyof OfferItemParams>() as OfferItemParams;
   const { id } = params;
@@ -26,7 +28,7 @@ function CardFulInfo({ offers }: CardFulInfoProps): JSX.Element {
     <>
       <section className="property">
         <Gallery images={offer.images} type={offer.type} />
-        <Info offer={offer} />
+        <Info offer={offer} reviews={reviews}/>
       </section>
       <section className="property__map map" />
       <NearPlaces offers={nearPlaces} />

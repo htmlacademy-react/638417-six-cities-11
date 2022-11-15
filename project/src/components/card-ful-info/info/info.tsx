@@ -1,12 +1,14 @@
 import { Offer } from '../../../types/offer';
-import Reviews from '../reviews/reviews';
+import ReviewsList from '../reviews-list/reviews-list';
 import Goods from '../goods/goods';
+import { Reviews } from '../../../types/review';
 
 type InfoProps = {
   offer: Offer;
+  reviews: Reviews;
 }
 
-function Info({ offer }: InfoProps): JSX.Element {
+function Info({ offer, reviews }: InfoProps): JSX.Element {
   return (
     <div className="property__container container">
       <div className="property__wrapper">
@@ -67,7 +69,7 @@ function Info({ offer }: InfoProps): JSX.Element {
             </p>
           </div>
         </div>
-        <Reviews />
+        <ReviewsList reviews={reviews}/>
       </div>
     </div>
   );
