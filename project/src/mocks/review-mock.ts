@@ -11,7 +11,7 @@ export const reviews: Reviews = [
     },
     'rating': 4,
     'comment': 'We loved it so much, the house, the veiw, the location just great.. Highly reccomend :)',
-    'date': '2022-06-13T12:25:36.938Z'
+    'date': '2021-05-13T12:25:36.938Z'
   },
   {
     'id': 2,
