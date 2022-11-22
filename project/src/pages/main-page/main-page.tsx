@@ -19,9 +19,13 @@ function MainPage({ favoritesCount, offers }: MainPageProps,): JSX.Element {
 
   const cities = [...new Set(offers.map((o) => o.city.name))];
 
-  const onOfferListItemHover = (offerId: number) => {
+  const onOfferListItemMouseOver = (offerId: number) => {
     const currentPoint = offers.find((offer) => offer.id === offerId);
     setSelectedPoint(currentPoint);
+  };
+
+  const onOfferListItemMouseOut = () => {
+    setSelectedPoint(undefined);
   };
 
   return (
@@ -66,7 +70,7 @@ function MainPage({ favoritesCount, offers }: MainPageProps,): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardList offers={offers} onOfferListItemHover={onOfferListItemHover}/>
+                <CardList offers={offers} onOfferListItemMouseOver={onOfferListItemMouseOver} onOfferListItemMouseOut={onOfferListItemMouseOut}/>
               </div>
             </section>
             <div className="cities__right-section">
