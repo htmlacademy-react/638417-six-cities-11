@@ -1,18 +1,27 @@
+import { SyntheticEvent } from 'react';
+import LiItem from '../li-item/li-item';
+
 function Sort(): JSX.Element {
+
+
+  const onSortClickHandler = (e: SyntheticEvent) => {
+    e.currentTarget.classList.toggle('places__options--opened');
+  };
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0}>
-      Popular
+      <span className="places__sorting-type" tabIndex={0} onClick={onSortClickHandler}>
+        Popular
         <svg className="places__sorting-arrow" width={7} height={4}>
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
-        <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-        <li className="places__option" tabIndex={0}>Price: low to high</li>
-        <li className="places__option" tabIndex={0}>Price: high to low</li>
-        <li className="places__option" tabIndex={0}>Top rated first</li>
+      <ul className="places__options places__options--custom ">
+        <LiItem className="places__option places__option--active" tabIndex={0} text="Popular"/>
+        <LiItem className="places__option" tabIndex={0} text="Price: low to high"/>
+        <LiItem className="places__option" tabIndex={0} text="Price: high to low"/>
+        <LiItem className="places__option" tabIndex={0} text="Top rated first"/>
       </ul>
     </form>
   );
