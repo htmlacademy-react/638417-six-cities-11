@@ -1,23 +1,23 @@
-import { SyntheticEvent } from 'react';
+import { useState } from 'react';
 import LiItem from '../li-item/li-item';
 
 function Sort(): JSX.Element {
+  const [sortIsOpen, setSortIsOpen] = useState(false);
 
-
-  const onSortClickHandler = (e: SyntheticEvent) => {
-    e.currentTarget.classList.toggle('places__options--opened');
+  const onSortClickHandler = () => {
+    setSortIsOpen((prevState)=>!prevState);
   };
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={onSortClickHandler}>
-        Popular
+      Popular
         <svg className="places__sorting-arrow" width={7} height={4}>
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
-      <ul className="places__options places__options--custom ">
+      <ul className={`${sortIsOpen ? 'places__options--opened' : ''} places__options places__options--custom`}>
         <LiItem className="places__option places__option--active" tabIndex={0} text="Popular"/>
         <LiItem className="places__option" tabIndex={0} text="Price: low to high"/>
         <LiItem className="places__option" tabIndex={0} text="Price: high to low"/>
