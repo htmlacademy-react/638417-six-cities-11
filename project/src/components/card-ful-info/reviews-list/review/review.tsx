@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import { dateToMMMMYYYY, dateToYYYYMMDD } from '../../../../helpers';
 import { Review } from '../../../../types/review';
 
 type ReviewProps = {
@@ -23,7 +23,9 @@ function ReviewItem({review}: ReviewProps): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">{review.comment}</p>
-        <time className="reviews__time" dateTime={dayjs(review.date).format('YYYY-MM-DD')}>{dayjs(review.date).format('MMMM YYYY')}</time>
+        <time className="reviews__time" dateTime={dateToYYYYMMDD(review.date)}>
+          {dateToMMMMYYYY(review.date)}
+        </time>
       </div>
     </li>
   );

@@ -12,7 +12,6 @@ type MainPageProps = {
 }
 
 function MainPage({ favoritesCount, offers }: MainPageProps,): JSX.Element {
-  // const [activeOfferId, setActiveOfferId] = useState(ZERO_ID);
   const [selectedPoint, setSelectedPoint] = useState<Offer | undefined>(
     undefined
   );
