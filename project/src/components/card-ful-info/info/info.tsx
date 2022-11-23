@@ -2,6 +2,7 @@ import { Offer } from '../../../types/offer';
 import ReviewsList from '../reviews-list/reviews-list';
 import Goods from '../goods/goods';
 import { Reviews } from '../../../types/review';
+import LiItem from '../../li-item/li-item';
 
 type InfoProps = {
   offer: Offer;
@@ -32,15 +33,9 @@ function Info({ offer, reviews }: InfoProps): JSX.Element {
           <span className="property__rating-value rating__value">{offer.rating}</span>
         </div>
         <ul className="property__features">
-          <li className="property__feature property__feature--entire">
-            {offer.type}
-          </li>
-          <li className="property__feature property__feature--bedrooms">
-            {offer.bedrooms} Bedrooms
-          </li>
-          <li className="property__feature property__feature--adults">
-            Max {offer.maxAdults} adults
-          </li>
+          <LiItem className="property__feature property__feature--entire" text={offer.type} />
+          <LiItem className="property__feature property__feature--bedrooms" text={`${offer.bedrooms} Bedrooms`} />
+          <LiItem className="property__feature property__feature--adults" text={`Max ${offer.maxAdults} adults`} />
         </ul>
         <div className="property__price">
           <b className="property__price-value">€{offer.price}</b>
