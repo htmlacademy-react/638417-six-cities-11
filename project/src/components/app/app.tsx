@@ -1,17 +1,13 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../consts';
-import { offers } from '../../mocks/offers-mock';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PropertyPage from '../../pages/property-page/property-page';
-import { Offers } from '../../types/offer';
 import PrivateRoute from '../private-route/private-route';
 
-const offersResp: Offers = offers; // тут будет запрос на сервер
-const favoritesCount: number = offersResp.filter((o)=>o.isFavorite).length; // количество оффером с влагом isFavorite
 
 function App(): JSX.Element {
   return (
@@ -20,7 +16,7 @@ function App(): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage favoritesCount={favoritesCount} offers={offersResp} />}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
@@ -32,17 +28,17 @@ function App(): JSX.Element {
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritesPage offers={offersResp} />
+                <FavoritesPage />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Room}
-            element={<PropertyPage favoritesCount={favoritesCount} offers={offersResp}/>}
+            element={<PropertyPage />}
           />
           <Route
             path="*"
-            element={<NotFoundScreen favoritesCount={favoritesCount} />}
+            element={<NotFoundScreen />}
           />
         </Routes>
       </BrowserRouter>

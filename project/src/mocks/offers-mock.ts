@@ -5,7 +5,7 @@ const AVATAR_URL = 'https://i.pravatar.cc/128';
 export const offers: Offers = [
   {
     'city': {
-      'name': 'Dusseldorf',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.3909553943508,
         'longitude': 4.85309666406198,
@@ -59,7 +59,7 @@ export const offers: Offers = [
   },
   {
     'city': {
-      'name': 'Dusseldorf',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.3609553943508,
         'longitude': 4.85309666406198,

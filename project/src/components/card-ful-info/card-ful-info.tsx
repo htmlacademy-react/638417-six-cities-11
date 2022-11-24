@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { Offer, Offers } from '../../types/offer';
+import { useAppSelector } from '../../hooks';
+import { Offer } from '../../types/offer';
 import { Reviews } from '../../types/review';
 import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
@@ -7,7 +8,6 @@ import Gallery from './gallery/gallery';
 import Info from './info/info';
 
 type CardFulInfoProps = {
-  offers: Offers;
   reviews: Reviews;
 }
 
@@ -15,15 +15,15 @@ type OfferItemParams = {
   id: string;
 }
 
-function CardFulInfo({ offers, reviews }: CardFulInfoProps): JSX.Element {
+function CardFulInfo({ reviews }: CardFulInfoProps): JSX.Element {
+  const selectedCity = useAppSelector((state) => state.selectedCity); // выбранный город
+  const offers = useAppSelector((state) => state.offers); // все города
+  const selectedCities = offers.filter((o)=>(o.city.name === selectedCity)); // фильтрует по выбранному городу
 
   const params = useParams<keyof OfferItemParams>() as OfferItemParams;
   const { id } = params;
   const numberId = parseInt(id, 10);
   const offer = offers.find((o) => o.id === numberId) as Offer;
-  const curentCity = offer.city.name;
-
-  const nearPlaces = offers.filter((o) => o.city.name === curentCity);
 
   return (
     <>
@@ -32,9 +32,9 @@ function CardFulInfo({ offers, reviews }: CardFulInfoProps): JSX.Element {
         <Info offer={offer} reviews={reviews}/>
       </section>
       <section className="property__map map">
-        <Map city={offers[0].city} offers={nearPlaces} selectedPoint={undefined}/>
+        <Map city={offers[0].city} selectedCity={selectedCity} hoveredPoint={undefined}/>
       </section>
-      <NearPlaces offers={nearPlaces} />
+      <NearPlaces offers={selectedCities} />
     </>
   );
 }

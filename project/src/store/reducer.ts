@@ -4,17 +4,17 @@ import { setOffers, selectCity } from './actoins';
 import { Offers } from '../types/offer';
 
 const initialState: {
-  city: string;
+  selectedCity: string;
   offers: Offers;
 } = {
-  city: 'Paris',
+  selectedCity: 'Amsterdam',
   offers,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(selectCity, (state, action) => {
-      state.city = action.payload.city;
+      state.selectedCity = action.payload.selectedCity;
     })
     .addCase(setOffers, (state, action) => {
       state.offers = action.payload.offers;
