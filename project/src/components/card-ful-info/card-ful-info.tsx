@@ -1,21 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { Offer } from '../../types/offer';
-import { Reviews } from '../../types/review';
 import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
 import Gallery from './gallery/gallery';
 import Info from './info/info';
 
-type CardFulInfoProps = {
-  reviews: Reviews;
-}
-
 type OfferItemParams = {
   id: string;
 }
 
-function CardFulInfo({ reviews }: CardFulInfoProps): JSX.Element {
+function CardFulInfo(): JSX.Element {
   const selectedCity = useAppSelector((state) => state.selectedCity); // выбранный город
   const offers = useAppSelector((state) => state.offers); // все города
   const selectedCities = offers.filter((o)=>(o.city.name === selectedCity)); // фильтрует по выбранному городу
@@ -29,7 +24,7 @@ function CardFulInfo({ reviews }: CardFulInfoProps): JSX.Element {
     <>
       <section className="property">
         <Gallery images={offer.images} type={offer.type} />
-        <Info offer={offer} reviews={reviews}/>
+        <Info offer={offer}/>
       </section>
       <section className="property__map map">
         <Map city={offers[0].city} selectedCity={selectedCity} hoveredPoint={undefined}/>
