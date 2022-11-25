@@ -19,3 +19,9 @@ export const setReviews = createAction('reviews/setReviews', (reviews: Reviews)=
     reviews,
   }
 }));
+
+export const setSort = createAction('offers/setSort', (sort: string)=>({
+  payload:{
+    sort,
+  }
+}));
