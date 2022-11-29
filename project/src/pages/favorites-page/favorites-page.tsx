@@ -2,12 +2,9 @@ import { Helmet } from 'react-helmet-async';
 import FavoritesLocationItems from '../../components/favorites-location-items/favorites-location-items';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import { useAppSelector } from '../../hooks';
 import { Offers } from '../../types/offer';
 import FavoritesEmptyScreen from '../favorites-empty-screen/favorites-empty';
-
-type FavoriteProps = {
-  offers: Offers;
-};
 
 type CityWhithOffers = {
   name: string;
@@ -18,8 +15,8 @@ type FavoritePlaces = {
   [key: string]: Offers;
 }
 
-function FavoritesPage({ offers }: FavoriteProps): JSX.Element {
-
+function FavoritesPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const favoritePlacesArr: CityWhithOffers[] = [];
   const favoritePlacesObj: FavoritePlaces = {};
 

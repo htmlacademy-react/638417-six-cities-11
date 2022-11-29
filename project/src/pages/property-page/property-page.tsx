@@ -1,20 +1,15 @@
 import CardFulInfo from '../../components/card-ful-info/card-ful-info';
 import Header from '../../components/header/header';
-import { Offers } from '../../types/offer';
-import { Reviews } from '../../types/review';
+import { useAppSelector } from '../../hooks';
 
-type PropertyPageProps = {
-  favoritesCount: number;
-  offers: Offers;
-  reviews: Reviews;
-}
-
-function PropertyPage({ favoritesCount, offers, reviews }: PropertyPageProps): JSX.Element {
+function PropertyPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
+  const favoritesCount: number = offers.filter((o)=>o.isFavorite).length; // количество оффером с влагом isFavorite
   return (
     <div className="page page--gray page--main">
       <Header favoritesCount={favoritesCount} />
       <main className="page__main page__main--property">
-        <CardFulInfo offers={offers} reviews={reviews}/>
+        <CardFulInfo />
       </main>
     </div>
   );

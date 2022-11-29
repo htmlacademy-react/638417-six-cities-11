@@ -1,12 +1,10 @@
-import { Reviews } from '../../../types/review';
+import { useAppSelector } from '../../../hooks';
 import NewCommentForm from '../../new-comment-form/new-comment-form';
 import ReviewItem from './review/review';
 
-type ReviewsListProps = {
-  reviews: Reviews;
-}
 
-function ReviewsList({reviews}:ReviewsListProps): JSX.Element {
+function ReviewsList(): JSX.Element {
+  const reviews = useAppSelector((state) => state.reviews); // все города
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>

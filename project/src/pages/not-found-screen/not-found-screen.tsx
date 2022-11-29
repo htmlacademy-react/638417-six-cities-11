@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
+import { useAppSelector } from '../../hooks';
 
-type NotFoundScreenProp = {
-  favoritesCount: number;
-}
 
-function NotFoundScreen({ favoritesCount }: NotFoundScreenProp): JSX.Element {
+function NotFoundScreen(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
+  const favoritesCount: number = offers.filter((o)=>o.isFavorite).length; // количество оффером с влагом isFavorite
   return (
     <div className="page page--gray page--main">
       <Helmet>

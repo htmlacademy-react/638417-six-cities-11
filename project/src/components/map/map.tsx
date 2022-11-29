@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react';
 import {Icon, Marker} from 'leaflet';
-import { City, Offer, Offers } from '../../types/offer';
+import { City, Offer} from '../../types/offer';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../consts';
+import { useAppSelector } from '../../hooks';
 
 type MapProps = {
   city: City;
-  offers: Offers;
-  selectedPoint: Offer | undefined;
+  hoveredPoint: Offer | undefined;
+  selectedCity: string;
 }
 
 const defaultCustomIcon = new Icon({
@@ -23,29 +24,41 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({city, offers, selectedPoint}:MapProps): JSX.Element {
+function Map({ city, hoveredPoint, selectedCity }:MapProps): JSX.Element {
 
+  const offers = useAppSelector((state) => state.offers); // все города
+  const selectedCities = offers.filter((o)=>(o.city.name === selectedCity)); // фильтрует по выбранному городу
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers: Marker[] = [];
     if (map) {
-      offers.forEach((offer) => {
+      map.setView({
+        lat: city.location.latitude,
+        lng: city.location.longitude
+      }, city.location.zoom);
+      selectedCities.forEach((offer) => {
         const marker = new Marker({
           lat: offer.city.location.latitude,
           lng: offer.city.location.longitude
         });
-
+        markers.push(marker);
         marker
           .setIcon(
-            selectedPoint !== undefined && offer.id === selectedPoint.id
+            hoveredPoint !== undefined && offer.id === hoveredPoint.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(map);
       });
+      return () => {
+        if (map) {
+          markers.forEach((marker) => map.removeLayer(marker));
+        }
+      };
     }
-  }, [map, offers, selectedPoint]);
+  }, [map, selectedCity, hoveredPoint]);
 
   return (
     <div
