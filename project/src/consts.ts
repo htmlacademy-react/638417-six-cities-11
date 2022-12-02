@@ -25,3 +25,12 @@ export enum SortType {
 }
 
 export const DEFAULT_CITY = 'Amsterdam';
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Nearby = '/nearby',
+  Favorites = '/favorite',
+  Reviews = '/comments',
+  Login = '/login',
+  Logout = '/logout'
+}

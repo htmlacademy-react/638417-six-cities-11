@@ -1,7 +1,6 @@
 import { reviews } from './../mocks/review-mock';
-import { offers } from './../mocks/offers-mock';
 import {createReducer} from '@reduxjs/toolkit';
-import { setOffers, selectCity, setReviews, setSort } from './actoins';
+import { loadOffers, selectCity, setReviews, setSort } from './actoins';
 import { Offers } from '../types/offer';
 import { Reviews } from '../types/review';
 import { DEFAULT_CITY, SortType } from '../consts';
@@ -13,7 +12,7 @@ const initialState: {
   sort: string;
 } = {
   selectedCity: DEFAULT_CITY,
-  offers,
+  offers: [],
   reviews,
   sort: SortType.Popular,
 };
@@ -23,7 +22,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(selectCity, (state, action) => {
       state.selectedCity = action.payload.selectedCity;
     })
-    .addCase(setOffers, (state, action) => {
+    .addCase(loadOffers, (state, action) => {
       state.offers = action.payload.offers;
     })
     .addCase(setReviews, (state, action) => {

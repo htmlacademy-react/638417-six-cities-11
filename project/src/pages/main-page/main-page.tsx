@@ -12,6 +12,7 @@ import { Offer } from '../../types/offer';
 function MainPage(): JSX.Element {
   // STORE
   const selectedCity = useAppSelector((state) => state.selectedCity); // выбранный город
+
   const offers = useAppSelector((state) => state.offers); // все города
   const sort = useAppSelector((state) => state.sort); // тип сортировки
 
@@ -21,6 +22,7 @@ function MainPage(): JSX.Element {
 
   // CREATE NECESSARY DATA
   const selectedCities = offers.filter((o)=>(o.city.name === selectedCity)); // фильтрует по выбранному городу
+
   const favoritesCount: number = offers.filter((o)=>o.isFavorite).length; // количество оффером с влагом isFavorite
   const cities = [...new Set(offers.map((o) => o.city.name))]; // все названия городов
 
@@ -46,7 +48,7 @@ function MainPage(): JSX.Element {
 
   useEffect(()=>{
     setOffersAfterSort(getSortedOffers());
-  },[sort]);
+  },[sort, selectedCity]);
 
   return (
     <div className="page page--gray page--main">
@@ -71,7 +73,7 @@ function MainPage(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={offersAfterSort[0].city} hoveredPoint={hoveredPoint} selectedCity={selectedCity}/>
+                {offersAfterSort.length ? <Map city={offersAfterSort[0].city} hoveredPoint={hoveredPoint} selectedCity={selectedCity}/> : null}
               </section>
             </div>
           </div>
