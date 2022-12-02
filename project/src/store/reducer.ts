@@ -1,6 +1,6 @@
 import { reviews } from './../mocks/review-mock';
 import {createReducer} from '@reduxjs/toolkit';
-import { loadOffers, requireAuthorization, selectCity, setReviews, setSort } from './actoins';
+import { loadOffers, requireAuthorization, selectCity, setError, setReviews, setSort } from './actoins';
 import { Offers } from '../types/offer';
 import { Reviews } from '../types/review';
 import { AuthorizationStatus, DEFAULT_CITY, SortType } from '../consts';
@@ -11,12 +11,14 @@ const initialState: {
   reviews: Reviews;
   sort: string;
   authorizationStatus: AuthorizationStatus;
+  error: string | null;
 } = {
   selectedCity: DEFAULT_CITY,
   offers: [],
   reviews,
   sort: SortType.Popular,
   authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -35,6 +37,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 
