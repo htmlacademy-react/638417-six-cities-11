@@ -24,7 +24,7 @@ export enum SortType {
   TopRatedFirst = 'Top rated first',
 }
 
-export const DEFAULT_CITY = 'Amsterdam';
+export const DEFAULT_CITY = 'Paris';
 
 export enum APIRoute {
   Offers = '/hotels',

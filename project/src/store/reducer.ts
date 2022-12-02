@@ -1,6 +1,6 @@
 import { reviews } from './../mocks/review-mock';
 import {createReducer} from '@reduxjs/toolkit';
-import { loadOffers, requireAuthorization, selectCity, setError, setReviews, setSort } from './actoins';
+import { loadOffers, requireAuthorization, selectCity, setError, setOffersLoadingStatus, setReviews, setSort } from './actoins';
 import { Offers } from '../types/offer';
 import { Reviews } from '../types/review';
 import { AuthorizationStatus, DEFAULT_CITY, SortType } from '../consts';
@@ -12,6 +12,7 @@ const initialState: {
   sort: string;
   authorizationStatus: AuthorizationStatus;
   error: string | null;
+  isOffersDataLoading: boolean;
 } = {
   selectedCity: DEFAULT_CITY,
   offers: [],
@@ -19,6 +20,7 @@ const initialState: {
   sort: SortType.Popular,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
+  isOffersDataLoading: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -27,7 +29,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.selectedCity = action.payload.selectedCity;
     })
     .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload.offers;
+      state.offers = action.payload;
     })
     .addCase(setReviews, (state, action) => {
       state.reviews = action.payload.reviews;
@@ -40,6 +42,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(setOffersLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     });
 });
 

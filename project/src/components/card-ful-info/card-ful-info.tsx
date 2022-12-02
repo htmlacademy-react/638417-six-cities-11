@@ -45,7 +45,7 @@ function CardFulInfo(): JSX.Element {
         {offer && <Info offer={offer}/>}
       </section>
       <section className="property__map map">
-        <Map city={offers[0].city} selectedCity={selectedCity} hoveredPoint={undefined}/>
+        {nearPlaces && <Map city={nearPlaces[0].city} selectedCity={selectedCity} hoveredPoint={undefined}/>}
       </section>
       <NearPlaces nearPlaces={nearPlaces} />
     </>

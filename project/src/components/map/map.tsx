@@ -28,6 +28,7 @@ function Map({ city, hoveredPoint, selectedCity }:MapProps): JSX.Element {
 
   const offers = useAppSelector((state) => state.offers); // все города
   const selectedCities = offers.filter((o)=>(o.city.name === selectedCity)); // фильтрует по выбранному городу
+
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -40,8 +41,8 @@ function Map({ city, hoveredPoint, selectedCity }:MapProps): JSX.Element {
       }, city.location.zoom);
       selectedCities.forEach((offer) => {
         const marker = new Marker({
-          lat: offer.city.location.latitude,
-          lng: offer.city.location.longitude
+          lat: offer.location.latitude,
+          lng: offer.location.longitude
         });
         markers.push(marker);
         marker
@@ -58,7 +59,7 @@ function Map({ city, hoveredPoint, selectedCity }:MapProps): JSX.Element {
         }
       };
     }
-  }, [map, selectedCity, hoveredPoint]);
+  }, [map, selectedCity, hoveredPoint, city]);
 
   return (
     <div
