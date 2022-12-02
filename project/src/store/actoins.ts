@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import { Offers } from '../types/offer';
 import { Reviews } from '../types/review';
+import {AuthorizationStatus} from '../consts';
 
 export const loadOffers = createAction('data/loadOffers', (offers: Offers)=>({
   payload:{
@@ -25,3 +26,5 @@ export const setSort = createAction('offers/setSort', (sort: string)=>({
     sort,
   }
 }));
+
+export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
