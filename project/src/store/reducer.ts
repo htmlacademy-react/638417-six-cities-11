@@ -15,7 +15,7 @@ type InitialState = {
   isOffersDataLoading: boolean;
 }
 
-const initialState:InitialState = {
+const initialState: InitialState = {
   selectedCity: DEFAULT_CITY,
   offers: [],
   reviews,
