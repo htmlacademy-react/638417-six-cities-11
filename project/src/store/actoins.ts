@@ -25,6 +25,6 @@ export const setSort = createAction('offers/setSort', (sort: string)=>({
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const setError = createAction<string | null>('game/setError');
+export const setError = createAction<string | null>('cities/setError');
 
 export const setOffersLoadingStatus = createAction<boolean>('data/setOffersLoadingStatus');
