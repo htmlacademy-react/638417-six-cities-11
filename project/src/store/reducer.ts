@@ -5,7 +5,7 @@ import { Offers } from '../types/offer';
 import { Reviews } from '../types/review';
 import { AuthorizationStatus, DEFAULT_CITY, SortType } from '../consts';
 
-const initialState: {
+type InitialState = {
   selectedCity: string;
   offers: Offers;
   reviews: Reviews;
@@ -13,7 +13,9 @@ const initialState: {
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   isOffersDataLoading: boolean;
-} = {
+}
+
+const initialState:InitialState = {
   selectedCity: DEFAULT_CITY,
   offers: [],
   reviews,
