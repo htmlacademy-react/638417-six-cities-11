@@ -20,9 +20,8 @@ function LoginPage(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const passwordRule = /^(?=.*\d)(?=.*[A-Za-z]).{2,}$/;
 
-    if (loginRef.current !== null && passwordRef.current !== null && passwordRef.current.value.match(passwordRule)) {
+    if (loginRef.current !== null && passwordRef.current !== null) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value.trim(),

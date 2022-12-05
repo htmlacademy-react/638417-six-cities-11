@@ -2,6 +2,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
 import browserHistory from '../../browser-history';
 import { AppRoute, AuthorizationStatus } from '../../consts';
+import { useAppSelector } from '../../hooks';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
@@ -12,6 +13,8 @@ import PrivateRoute from '../private-route/private-route';
 
 
 function App(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
@@ -28,7 +31,7 @@ function App(): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.Auth}
+                authorizationStatus={authorizationStatus}
               >
                 <FavoritesPage />
               </PrivateRoute>
