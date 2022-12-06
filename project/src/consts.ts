@@ -24,4 +24,15 @@ export enum SortType {
   TopRatedFirst = 'Top rated first',
 }
 
-export const DEFAULT_CITY = 'Amsterdam';
+export const DEFAULT_CITY = 'Paris';
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Nearby = '/nearby',
+  Favorites = '/favorite',
+  Reviews = '/comments',
+  Login = '/login',
+  Logout = '/logout'
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;

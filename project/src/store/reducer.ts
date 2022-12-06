@@ -1,21 +1,28 @@
 import { reviews } from './../mocks/review-mock';
-import { offers } from './../mocks/offers-mock';
 import {createReducer} from '@reduxjs/toolkit';
-import { setOffers, selectCity, setReviews, setSort } from './actoins';
+import { loadOffers, requireAuthorization, selectCity, setError, setOffersLoadingStatus, setReviews, setSort } from './actoins';
 import { Offers } from '../types/offer';
 import { Reviews } from '../types/review';
-import { DEFAULT_CITY, SortType } from '../consts';
+import { AuthorizationStatus, DEFAULT_CITY, SortType } from '../consts';
 
-const initialState: {
+type InitialState = {
   selectedCity: string;
   offers: Offers;
   reviews: Reviews;
   sort: string;
-} = {
+  authorizationStatus: AuthorizationStatus;
+  error: string | null;
+  isOffersDataLoading: boolean;
+}
+
+const initialState: InitialState = {
   selectedCity: DEFAULT_CITY,
-  offers,
+  offers: [],
   reviews,
   sort: SortType.Popular,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
+  isOffersDataLoading: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -23,14 +30,23 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(selectCity, (state, action) => {
       state.selectedCity = action.payload.selectedCity;
     })
-    .addCase(setOffers, (state, action) => {
-      state.offers = action.payload.offers;
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     })
     .addCase(setReviews, (state, action) => {
       state.reviews = action.payload.reviews;
     })
     .addCase(setSort, (state, action) => {
       state.sort = action.payload.sort;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
+    })
+    .addCase(setOffersLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     });
 });
 

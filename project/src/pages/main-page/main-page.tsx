@@ -5,6 +5,7 @@ import CityList from '../../components/city-list/city-list';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import Sort from '../../components/sort/sotr';
+import Spiner from '../../components/spiner/spiner';
 import { SortType } from '../../consts';
 import { useAppSelector } from '../../hooks';
 import { Offer } from '../../types/offer';
@@ -12,8 +13,11 @@ import { Offer } from '../../types/offer';
 function MainPage(): JSX.Element {
   // STORE
   const selectedCity = useAppSelector((state) => state.selectedCity); // выбранный город
+
   const offers = useAppSelector((state) => state.offers); // все города
+
   const sort = useAppSelector((state) => state.sort); // тип сортировки
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
 
   // STATE
   const [hoveredPoint, setSelectedPoint] = useState<Offer | undefined>(undefined); // карточна на которую навели курсос для отображения на карте
@@ -21,6 +25,7 @@ function MainPage(): JSX.Element {
 
   // CREATE NECESSARY DATA
   const selectedCities = offers.filter((o)=>(o.city.name === selectedCity)); // фильтрует по выбранному городу
+
   const favoritesCount: number = offers.filter((o)=>o.isFavorite).length; // количество оффером с влагом isFavorite
   const cities = [...new Set(offers.map((o) => o.city.name))]; // все названия городов
 
@@ -46,7 +51,7 @@ function MainPage(): JSX.Element {
 
   useEffect(()=>{
     setOffersAfterSort(getSortedOffers());
-  },[sort]);
+  },[sort, selectedCity, offers]);
 
   return (
     <div className="page page--gray page--main">
@@ -66,12 +71,16 @@ function MainPage(): JSX.Element {
               <b className="places__found">{offersAfterSort.length} places to stay in {selectedCity}</b>
               <Sort/>
               <div className="cities__places-list places__list tabs__content">
-                <CardList offers={offersAfterSort} onOfferListItemMouseOver={onOfferListItemMouseOver} onOfferListItemMouseOut={onOfferListItemMouseOut}/>
+                {
+                  isOffersDataLoading
+                    ? <Spiner />
+                    : <CardList offers={offersAfterSort} onOfferListItemMouseOver={onOfferListItemMouseOver} onOfferListItemMouseOut={onOfferListItemMouseOut}/>
+                }
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={offersAfterSort[0].city} hoveredPoint={hoveredPoint} selectedCity={selectedCity}/>
+                {offersAfterSort.length ? <Map city={offersAfterSort[0].city} hoveredPoint={hoveredPoint} selectedCity={selectedCity}/> : null}
               </section>
             </div>
           </div>
